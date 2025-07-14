@@ -71,10 +71,6 @@ OneDrive\
         ├── Screenshots\
         └── WTF\
 
-# License
-
-MIT — feel free to use, modify, and redistribute.
-
 
 # Automation (Optional)
 To ensure your World of Warcraft data is regularly backed up, you can automate this script using Windows Task Scheduler.
@@ -105,6 +101,11 @@ Notes:
 Make sure the script is saved in a consistent location that doesn’t change (e.g., C:\Scripts).
 
 If running from a standard user account, check the box for “Run with highest privileges” to ensure access to all folders.
+
+
+# License
+
+MIT — feel free to use, modify, and redistribute.
 
 
 
