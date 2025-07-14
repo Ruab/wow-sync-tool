@@ -56,3 +56,21 @@ Create a timestamped folder in your OneDrive
 
 Copy WoW and AppData folders into appropriate backup directories
 
+# Example Output Structure
+
+OneDrive\
+├── AppDataBackup\
+│   └── 2025-07-14_153000\
+│       ├── weakauras-companion\
+│       └── WowUpCf\
+└── WoWBackup\
+    └── 2025-07-14_153000\
+        ├── Cache\
+        ├── Interface\
+        ├── Logs\
+        ├── Screenshots\
+        └── WTF\
+
+# License
+
+MIT — feel free to use, modify, and redistribute.
