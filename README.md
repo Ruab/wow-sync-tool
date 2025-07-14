@@ -74,3 +74,37 @@ OneDrive\
 # License
 
 MIT — feel free to use, modify, and redistribute.
+
+
+# Automation (Optional)
+To ensure your World of Warcraft data is regularly backed up, you can automate this script using Windows Task Scheduler.
+
+Step-by-Step: Add Script to Task Scheduler
+Open Task Scheduler (search for it in Start Menu).
+
+Click “Create Basic Task”.
+
+Give your task a name like WoW Backup and click Next.
+
+Choose a trigger (e.g., Daily, At log on, or Weekly) and click Next.
+
+For the action, select “Start a program” and click Next.
+
+In the Program/script field, enter:
+
+powershell.exe
+
+In the Add arguments (optional) field, enter:
+-ExecutionPolicy Bypass -File "C:\Users\YOUR_USERNAME\Path\To\backup-wow.ps1"
+
+Replace the path with the actual location of your .ps1 script.
+
+Click Next, then Finish.
+
+Notes:
+Make sure the script is saved in a consistent location that doesn’t change (e.g., C:\Scripts).
+
+If running from a standard user account, check the box for “Run with highest privileges” to ensure access to all folders.
+
+
+
