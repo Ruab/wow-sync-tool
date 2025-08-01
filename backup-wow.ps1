@@ -1,4 +1,4 @@
-# Get timestamp
+﻿# Get timestamp
 $timestamp = Get-Date -Format "yyyy-MM-dd_HHmmss"
 
 # Define OneDrive base backup path
@@ -17,7 +17,17 @@ $appDataFolders = @(
 )
 
 # List of WoW folders to back up
-$basepath = "C:\Program Files (x86)\World of Warcraft\_retail_\" ## CHANGE THIS TO YOUR _RETAIL_ FULLY QUALIFIED PATH IF WOW IS NOT INSTALLED IN "C:\Program Files (x86)\"
+try{
+    $filepath = Split-Path -Path $PSCommandPath -Parent
+    $filepath = -join($filepath, "\config.json")
+    $json = Get-Content -Path $filepath -Raw -ErrorAction Stop
+    $contents = $json | ConvertFrom-Json
+    $basepath = $contents.Path
+}
+catch{
+$basepath = "C:\Program Files (x86)\World of Warcraft\_retail_\"
+}
+
 $wowFolders = @(
     -join($basepath, "Cache"),
     -join($basepath, "Errors"),
