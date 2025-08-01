@@ -1,4 +1,4 @@
-﻿function Get-Config{
+function Get-Config{
     Write-Host "Getting wow install directory"
     do
     {
@@ -34,7 +34,8 @@ function Create-Task
 {
     $pathtoscript = Split-Path -Path $PSCommandPath -Parent
     $pathtoscript = -join($pathtoscript, "\backup-wow.ps1")
-    $action = New-ScheduledTaskAction -Execute "powershell.exe" -Argument  "-ExecutionPolicy Bypass -NoProfile -File '$pathtoscript'"
+    $args = -join('-ExecutionPolicy Bypass -File "', $pathtoscript, '"')
+    $action = New-ScheduledTaskAction -Execute "powershell.exe" -Argument $args
 
     $sett = New-ScheduledTaskSettingsSet -RestartCount 3 -RestartInterval (New-TimeSpan -Minutes 60) -RunOnlyIfNetworkAvailable -DontStopIfGoingOnBatteries -StartWhenAvailable
 
