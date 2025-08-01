@@ -17,16 +17,17 @@ $appDataFolders = @(
 )
 
 # List of WoW folders to back up
+$basepath = "C:\Program Files (x86)\World of Warcraft\_retail_\" ## CHANGE THIS TO YOUR _RETAIL_ FULLY QUALIFIED PATH IF WOW IS NOT INSTALLED IN "C:\Program Files (x86)\"
 $wowFolders = @(
-    "C:\Program Files (x86)\World of Warcraft\_retail_\Cache",
-    "C:\Program Files (x86)\World of Warcraft\_retail_\Errors",
-    "C:\Program Files (x86)\World of Warcraft\_retail_\Fonts",
-    "C:\Program Files (x86)\World of Warcraft\_retail_\GPUCache",
-    "C:\Program Files (x86)\World of Warcraft\_retail_\Interface",
-    "C:\Program Files (x86)\World of Warcraft\_retail_\Logs",
-    "C:\Program Files (x86)\World of Warcraft\_retail_\Screenshots",
-    "C:\Program Files (x86)\World of Warcraft\_retail_\Utils",
-    "C:\Program Files (x86)\World of Warcraft\_retail_\WTF"
+    -join($basepath, "Cache"),
+    -join($basepath, "Errors"),
+    -join($basepath, "Fonts"),
+    -join($basepath, "GPUCache"),
+    -join($basepath, "Interface"),
+    -join($basepath, "Logs"),
+    -join($basepath, "Screenshots"),
+    -join($basepath, "Utils"),
+    -join($basepath, "WTF")
 )
 
 # Function to back up folders
