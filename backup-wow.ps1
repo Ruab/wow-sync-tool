@@ -1,4 +1,4 @@
-# Get timestamp
+﻿# Get timestamp
 $timestamp = Get-Date -Format "yyyy-MM-dd_HHmmss"
 
 # Define OneDrive base backup path
@@ -17,16 +17,27 @@ $appDataFolders = @(
 )
 
 # List of WoW folders to back up
+try{
+    $filepath = Split-Path -Path $PSCommandPath -Parent
+    $filepath = -join($filepath, "\config.json")
+    $json = Get-Content -Path $filepath -Raw -ErrorAction Stop
+    $contents = $json | ConvertFrom-Json
+    $basepath = $contents.Path
+}
+catch{
+$basepath = "C:\Program Files (x86)\World of Warcraft\_retail_\"
+}
+
 $wowFolders = @(
-    "C:\Program Files (x86)\World of Warcraft\_retail_\Cache",
-    "C:\Program Files (x86)\World of Warcraft\_retail_\Errors",
-    "C:\Program Files (x86)\World of Warcraft\_retail_\Fonts",
-    "C:\Program Files (x86)\World of Warcraft\_retail_\GPUCache",
-    "C:\Program Files (x86)\World of Warcraft\_retail_\Interface",
-    "C:\Program Files (x86)\World of Warcraft\_retail_\Logs",
-    "C:\Program Files (x86)\World of Warcraft\_retail_\Screenshots",
-    "C:\Program Files (x86)\World of Warcraft\_retail_\Utils",
-    "C:\Program Files (x86)\World of Warcraft\_retail_\WTF"
+    -join($basepath, "Cache"),
+    -join($basepath, "Errors"),
+    -join($basepath, "Fonts"),
+    -join($basepath, "GPUCache"),
+    -join($basepath, "Interface"),
+    -join($basepath, "Logs"),
+    -join($basepath, "Screenshots"),
+    -join($basepath, "Utils"),
+    -join($basepath, "WTF")
 )
 
 # Function to back up folders
