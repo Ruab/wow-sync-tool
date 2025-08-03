@@ -5,10 +5,10 @@ $timestamp = Get-Date -Format "yyyy-MM-dd_HHmmss"
 $oneDriveRoot = "$env:OneDrive"
 
 # AppData backup destination
-$appDataDest = Join-Path $oneDriveRoot "AppDataBackup\$timestamp"
+$appDataDest = Join-Path $oneDriveRoot "\backup-wow\$timestamp\AppDataBackup\"
 
 # World of Warcraft backup destination
-$wowDest = Join-Path $oneDriveRoot "WoWBackup\$timestamp"
+$wowDest = Join-Path $oneDriveRoot "\backup-wow\$timestamp\WoWBackup\"
 
 # List of AppData folders to back up
 $appDataFolders = @(
@@ -38,7 +38,7 @@ $wowFolders = @(
     -join($basepath, "\Screenshots"),
     -join($basepath, "\Utils"),
     -join($basepath, "\WTF"),
-    -join($basepath, "WTF-Backup")
+    -join($basepath, "\WTF-Backup")
 )
 
 # Function to back up folders
@@ -60,7 +60,7 @@ function Backup-Folders {
 }
 
 # Run backups
-$transcriptpath = -join($oneDriveRoot, "\AppDataBackup\", $timestamp, "\log.txt")
+$transcriptpath = -join($oneDriveRoot, "\backup-wow\", $timestamp, "\AppDataBackup\log.txt")
 Start-Transcript -Path $transcriptpath
 Backup-Folders -Folders $appDataFolders -DestinationRoot $appDataDest
 Backup-Folders -Folders $wowFolders -DestinationRoot $wowDest
