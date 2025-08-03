@@ -1,4 +1,4 @@
-﻿# Get timestamp
+# Get timestamp
 $timestamp = Get-Date -Format "yyyy-MM-dd_HHmmss"
 
 # Define OneDrive base backup path
@@ -29,15 +29,16 @@ $basepath = "C:\Program Files (x86)\World of Warcraft\_retail_\"
 }
 
 $wowFolders = @(
-    -join($basepath, "Cache"),
-    -join($basepath, "Errors"),
-    -join($basepath, "Fonts"),
-    -join($basepath, "GPUCache"),
-    -join($basepath, "Interface"),
-    -join($basepath, "Logs"),
-    -join($basepath, "Screenshots"),
-    -join($basepath, "Utils"),
-    -join($basepath, "WTF")
+    -join($basepath, "\Cache"),
+    -join($basepath, "\Errors"),
+    -join($basepath, "\Fonts"),
+    -join($basepath, "\GPUCache"),
+    -join($basepath, "\Interface"),
+    -join($basepath, "\Logs"),
+    -join($basepath, "\Screenshots"),
+    -join($basepath, "\Utils"),
+    -join($basepath, "\WTF"),
+    -join($basepath, "WTF-Backup")
 )
 
 # Function to back up folders
@@ -59,5 +60,8 @@ function Backup-Folders {
 }
 
 # Run backups
+$transcriptpath = -join($oneDriveRoot, "\AppDataBackup\", $timestamp, "\log.txt")
+Start-Transcript -Path $transcriptpath
 Backup-Folders -Folders $appDataFolders -DestinationRoot $appDataDest
 Backup-Folders -Folders $wowFolders -DestinationRoot $wowDest
+Stop-Transcript
